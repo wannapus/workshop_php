@@ -13,7 +13,7 @@
           <img src="dist/img/user2-160x160.jpg" class="img-circle elevation-2" alt="User Image">
         </div>
         <div class="info">
-          <a href="#" class="d-block">Administrator</a>
+          <a href="#" class="d-block"><?php echo $_SESSION["sess_fullname"]?></a>
         </div>
       </div>
       <!-- SidebarSearch Form -->
@@ -58,7 +58,7 @@
             </a>
           </li>
           <li class="nav-item">
-            <a href="#" class="nav-link">
+            <a href="Logout.php" class="nav-link">
             <i class="fas fa-sign-out-alt text-danger"></i>
               <p>
                 ออกจากระบบ

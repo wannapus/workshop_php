@@ -1,4 +1,10 @@
 <?php
+ob_start();
+session_start();
+if($_SESSION['sess_username']){
+?>
+
+<?php
 include("layout/header.php");
 include("layout/sidebar.php");
 ?>
@@ -239,3 +245,8 @@ include("layout/sidebar.php");
   <?php
   include("layout/footer.php");
   ?>
+<?php
+}else{
+  header('Location: login.php');
+}
+?>
