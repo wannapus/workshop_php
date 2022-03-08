@@ -2,18 +2,16 @@
 <link rel="stylesheet" href="plugins/datatables-bs4/css/dataTables.bootstrap4.min.css">
   <link rel="stylesheet" href="plugins/datatables-responsive/css/responsive.bootstrap4.min.css">
   <link rel="stylesheet" href="plugins/datatables-buttons/css/buttons.bootstrap4.min.css">
-
-
 <?php
 include("layout/header.php");
 include("layout/sidebar.php");
 ?>
 <?php
 include("connection/config.inc.php");
-$sql = "SELECT * FROM tbl_member";// คำสั่งดึงข้อมูลจากฐานข้อมูล
-$objQuery = mysqli_query($conn, $sql); // สั่งให้ $conn, $sql ทำงาน
-
+$sql = "SELECT * FROM tbl_member"; //คำสั่งตึงข้อมูลจากฐานข้อมูล
+$objQuery = mysqli_query($conn, $sql); //สั่งให้ $conn, $sql ทำงาน
 ?>
+
   <!-- Content Wrapper. Contains page content -->
   <div class="content-wrapper">
     <!-- Content Header (Page header) -->
@@ -47,10 +45,10 @@ $objQuery = mysqli_query($conn, $sql); // สั่งให้ $conn, $sql ท�
                 <table id="example1" class="table table-bordered table-striped">
                   <thead>
                   <tr>
-                    <th>ID</th>
-                    <th>Fullname</th>
+                    <th>ลำดับ</th>
+                    <th>ชื่อ-นามสกุล</th>
                     <th>Username</th>
-                    <th>Level</th>
+                    <th>สถานะ</th>
                     <th>แก้ไข</th>
                     <th>ลบ</th>
                   </tr>
@@ -58,24 +56,26 @@ $objQuery = mysqli_query($conn, $sql); // สั่งให้ $conn, $sql ท�
                   <tbody>
                     <?php
                     while($objResult = mysqli_fetch_array($objQuery, MYSQLI_ASSOC)) {
-                    $m_id = $objResult['id']; // idจากฟิลด์ ในฐานข้อมูล
-                    $m_fullname = $objResult['fullname'];
-                    $m_username = $objResult['username'];
-                    $m_level = $objResult['level'];
+                      $m_id = $objResult['id']; // คือ ชื่อฟิลด์ ในฐานข้อมูล
+                      $m_fullname = $objResult['fullname'];
+                      $m_username = $objResult['username'];
+                      $m_level = $objResult['level'];
+                    
                     ?>
                   <tr>
                     <td><?php echo $m_id; ?></td>
                     <td><?php echo $m_fullname; ?></td>
                     <td><?php echo $m_username; ?></td>
                     <td><?php echo $m_level; ?></td>
-                    <td>แก้ไข</td>
-                    <td>ลบ</td>
-                    </tr>
-                     <?php
-                     }
-                   ?>
-                </tbody>
-               </table>
+                    <td><a href="edit.php?m_id=<?php echo $m_id; ?>" class='btn btn-warning'>แก้ไข</td>
+                    <td><a href="delete.php?m_id=<?php echo $m_id; ?>" class='btn btn-danger'>ลบ</td>
+                  </tr>
+                  <?php
+                  }
+                  ?>
+
+                  </tbody>
+                </table>
               </div>
               <!-- /.card-body -->
             </div>
@@ -109,7 +109,6 @@ $objQuery = mysqli_query($conn, $sql); // สั่งให้ $conn, $sql ท�
 <script src="plugins/datatables-buttons/js/buttons.html5.min.js"></script>
 <script src="plugins/datatables-buttons/js/buttons.print.min.js"></script>
 <script src="plugins/datatables-buttons/js/buttons.colVis.min.js"></script>
-
 <!-- Page specific script -->
 <script>
   $(function () {
